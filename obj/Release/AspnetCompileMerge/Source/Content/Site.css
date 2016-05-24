@@ -1,0 +1,166 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+/* styles for validation helpers */
+.field-validation-error {
+    color: #b94a48;
+}
+
+.field-validation-valid {
+    display: none;
+}
+
+input.input-validation-error {
+    border: 1px solid #b94a48;
+}
+
+input[type="checkbox"].input-validation-error {
+    border: 0 none;
+}
+
+.validation-summary-errors {
+    color: #b94a48;
+}
+
+.validation-summary-valid {
+    display: none;
+}
+
+
+.navbar-inverse {
+    /*background-color:#77DDFF;*/
+    /*background: -webkit-linear-gradient(#46A3FF,#ffffff);
+                    background: -o-linear-gradient(#46A3FF,#ffffff);
+                    background: -moz-linear-gradient(#46A3FF,#ffffff);
+                    background: linear-gradient(#46A3FF,#ffffff);
+                    /*border-color: #E7E7E7;*/
+    border-bottom-color: #ffffff;
+    /*background-image: -o-linear-gradient(bottom, #15C79F 50%, #31EFBF 50%);
+                    background-image: -moz-linear-gradient(bottom, #15C79F 10%, #31EFBF 90%);
+                    background-image: -webkit-linear-gradient(bottom, #15C79F 10%, #31EFBF 90%);
+                    background-image: -ms-linear-gradient(bottom, #15C79F 10%, #31EFBF 90%);*/
+    background-image: linear-gradient(to right bottom, rgba(194, 223, 255,1) 20%,rgba(235, 244, 255,1) 80%);
+}
+
+    .navbar-inverse > .nav-contaniner {
+        background-color: #ffffff;
+        border-radius: 5px;
+        padding-bottom: 5px;
+    }
+
+a:hover {
+    color: #000000;
+}
+
+.navbar-inverse .navbar-nav > li > a:hover {
+    color: #000000;
+}
+
+.navbar-inverse .navbar-nav > li > a {
+    color: #000000;
+}
+
+
+.navbar-inverse .navbar-brand {
+    color: #52b6ec;
+    font-family: "思源黑體";
+}
+
+.navbar-inverse .navbar-brand:hover {
+    color: #52b6ec;
+}
+
+.navbar-inverse .navbar-toggle {
+    border-color: #ddd;
+}
+
+    .navbar-inverse .navbar-toggle .icon-bar {
+        background-color: #ccc;
+    }
+
+.jumbotron {
+    padding: 3px;
+    background-color: rgba(0,0,0,0);
+    /*background-color:#000000;*/
+    border-bottom-right-radius: 0;
+    margin-bottom: 0px;
+    overflow: hidden;
+}
+
+.p-item {
+    padding: 5px;
+}
+
+    .p-item > .thumbnail {
+        padding: 50px;
+    }
+
+.icon-fb {
+    background-color: #4f7dd4;
+    color: #ffffff;
+    padding: 10px 18px 10px 18px;
+    border-radius: 40px;
+    text-align: center;
+}
+
+.text-social {
+    color: #ffffff;
+    font-size: 14pt;
+}
+
+.icon-google {
+    background-color: #dc422b;
+    color: #ffffff;
+    padding: 10px 12px 10px 12px;
+    border-radius: 40px;
+    text-align: center;
+}
+
+
+.icon-twitter {
+    background-color: #5bceff;
+    color: #ffffff;
+    padding: 10px 12px 10px 12px;
+    border-radius: 40px;
+    text-align: center;
+}
+
+.contact-us {
+    background: #428bca;
+    min-height: 200px;
+    padding: 5px;
+    border-radius: 5px;
+    margin-right: 0px;
+    padding-right: 0px;
+    margin-left: 0px;
+}
+
+ .contact-us > .social {
+    /*background-color:rgba(255,255,255,0.1);*/
+    height: 100%;
+    padding: 5px;
+    border-radius: 5px;
+ }
+
+.social > .col-social {
+    margin-top: 5px;
+}
+
+.contact-us label {
+    color: #ffffff;
+}

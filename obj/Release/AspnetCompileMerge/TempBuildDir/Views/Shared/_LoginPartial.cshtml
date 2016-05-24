@@ -1,0 +1,26 @@
+﻿@using Microsoft.AspNet.Identity
+
+@if (Request.IsAuthenticated) {
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" })) {
+        @Html.AntiForgeryToken()
+
+        <ul class="nav navbar-nav navbar-right">
+            @if (Request.IsAuthenticated && User.IsInRole("User"))
+            {
+                <li >@Html.ActionLink("賣點東西吧", "Create", "Product", null, new { @style = "color:#52b6ec;font-family:思源黑體;text-shadow: 2px 2px #FCFCFC;" })</li>
+                 <li>@Html.ActionLink("我的賣場", "List", "Product", null, new { @style = "color:#52b6ec;font-family:思源黑體;text-shadow: 2px 2px #FCFCFC;" })</li>
+            }
+            <li>
+                @Html.ActionLink(User.Identity.GetUserName().Split('@')[0], "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+            </li>
+            <li><a href="javascript:document.getElementById('logoutForm').submit()">登出</a></li>
+        </ul>
+    }
+}
+else {
+    <ul class="nav navbar-nav navbar-right">
+        <li>@Html.ActionLink("註冊", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+        <li>@Html.ActionLink("登入", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+        
+    </ul>
+}

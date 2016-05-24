@@ -1,0 +1,68 @@
+﻿@model IEnumerable< CanBuyWeb.Models.Product_Images>
+
+<script src="~/Content/javascripts/Image_Upload.js?v1.1"></script>
+@*@using (Html.BeginForm("UploadImage", "Images", FormMethod.Post, new { enctype = "multipart/form-data" })) 
+{*@
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+     
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+           <button type="button" id="btnupload">上傳</button>
+            <div style="width:0;height:0;overflow:hidden">
+                <input type="file" id="fileupload" multiple />
+                <input type="hidden" id="hidImages" name="hidimages" />
+                <input type="hidden" value="@Url.Action("UploadImage","Images")" id="imageuploadurl" />
+                <input type="hidden" value="@Url.Action("DeleteImage","Images")" id="imagedeleteurl" />
+                <input type="hidden" value="@Url.Action("getImages", "Images")" id="imagegeturl" />
+                <input type="hidden" value="@Url.Action("DeleteProductImage", "Images")" id="imagedeleteproducturl" />
+                @*<input id="btnsubmit" type="submit" value="Create" class="btn btn-default" />*@
+            </div>
+        </div>
+        <div class="row" id="thumbnails">
+           @if (Model != null)
+           {
+               foreach (var item in Model) 
+               { 
+                 <div class="col-md-3">
+                   <div class="thumbnail">
+                       <img src="@item.Image_Path" />
+                       <div class="col-md-6 text-left">
+                           @{
+                   if (item.IsPrimary)
+                   {
+                    <input name="chkimg" type="checkbox" checked value="@item.ID" />
+                   }
+                   else
+                   {
+                    <input name="chkimg" type="checkbox" value="@item.ID" />
+                   }
+}
+                         
+                       </div>
+                       <div class="col-md-6 text-right">
+                          
+                               <i class="glyphicon glyphicon-remove removeofproduct" id="@item.ID"></i>
+                           
+                          
+                        </div>
+                       </div>
+               </div>
+               }
+           }
+        </div>
+       
+
+    </div>
+@*  }*@
+
+
+
+
+
+
+
+
+
