@@ -25,6 +25,23 @@ namespace CanBuyWeb.Models
         public string description { get; set; }
     }
 
+    public class ProductIndex
+    {
+        public int ID { get; set; }
+       
+        public string Name { get; set; }
+       
+        public decimal MinPrice { get; set; }
+
+       
+        public decimal MaxPrice { get; set; }
+
+        public byte[] Image { get; set; }
+        public string ImagePath { get; set; }
+
+        public int ImageId { get; set; }
+    }
+
     public class ProductEdit
     {
         

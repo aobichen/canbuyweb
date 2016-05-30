@@ -164,3 +164,50 @@ a:hover {
 .contact-us label {
     color: #ffffff;
 }
+
+.Price {
+    color:	#ACD6FF;
+     text-decoration:none;
+
+}
+
+.Price:hover {
+    
+}
+
+.Price .name {
+    color:#0072E3;
+   font-size:13pt;
+    text-decoration:none;
+}
+
+.Price .name:hover{
+        color:#0072E3;
+   font-size:13pt;
+    text-decoration:none;
+    text-shadow:2px 2px 2px #d0d0d0;
+}
+
+.Price .title {
+    /*color:#0072E3;*/
+    color:#000000;
+   font-size:11pt;
+   font-family: "Microsoft YaHei";
+}
+
+.Price .min{
+     color:rgba(0, 127, 255,0.6);
+     font-size:13pt;
+     color:#4cae4c;
+}
+
+.Price .min:hover{
+    text-decoration:none;
+}
+
+.Price .max{
+     color:	rgba(0, 127, 255,0.9);
+    
+     font-size:13pt;
+     color:#4cae4c;
+}

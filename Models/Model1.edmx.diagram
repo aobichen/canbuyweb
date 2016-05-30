@@ -10,7 +10,6 @@
         <EntityTypeShape EntityType="mytestModel.AspNetUserClaims" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="mytestModel.AspNetUserLogins" Width="1.5" PointX="5.25" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="mytestModel.AspNetUsers" Width="1.5" PointX="3" PointY="1.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="mytestModel.text" Width="1.5" PointX="2.75" PointY="6.75" IsExpanded="true" />
         <AssociationConnector Association="mytestModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
         <AssociationConnector Association="mytestModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
         <AssociationConnector Association="mytestModel.AspNetUserRoles" ManuallyRouted="false" />
@@ -18,6 +17,8 @@
         <EntityTypeShape EntityType="mytestModel.Products" Width="1.5" PointX="5.375" PointY="7" />
         <AssociationConnector Association="mytestModel.FK_Product_Images_Products" />
         <EntityTypeShape EntityType="mytestModel.temp_image" Width="1.5" PointX="7.375" PointY="0.75" />
+        <EntityTypeShape EntityType="mytestModel.HomeImage" Width="1.5" PointX="7.625" PointY="10.5" />
+        <AssociationConnector Association="mytestModel.FK_HomeImage_Products" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

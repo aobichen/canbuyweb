@@ -12,10 +12,13 @@ namespace CanBuyWeb.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class text
+    public partial class HomeImage
     {
         public int ID { get; set; }
-        public string color { get; set; }
-        public string text1 { get; set; }
+        public string Image_Path { get; set; }
+        public byte[] Image_Bytes { get; set; }
+        public int Product_Id { get; set; }
+    
+        public virtual Products Products { get; set; }
     }
 }

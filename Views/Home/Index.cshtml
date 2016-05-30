@@ -1,4 +1,6 @@
-﻿@{
+﻿@model IEnumerable<CanBuyWeb.Models.ProductIndex>
+
+@{
     ViewBag.Title = "Application Name";
     Layout = null;
 }
@@ -30,68 +32,15 @@ body{
 }
 .navbar-inverse{
     background-color:transparent;
-    /*background-image:url('../../sample/blue.jpg')*/
+   
 }
 
-                /*.nav-bar-blue {
- background-image:url("../../sample/blue.jpg");
-  transition-property: background-image;
-  transition-duration: 1s;
-  transition-timing-function: ease-out;
-  -webkit-transition-property: background-color, color;
-  -webkit-transition-duration: 1s;
-  -o-transition-property: background-color, color;
-  -o-transition-duration: 1s;
- 
-  -moz-box-shadow: 2px 2px 1px black;
-}*/
-               /*.carousel-inner{
-                   border:3px solid rgba(255,255,255,1);
-               }*/
     </style>
 
 </head>
 <body>
-  <script type="text/javascript">
-      jQuery(function () {
-          // $('.main-detail').find('#detail').height($('main-carousel').height())
 
-          var height1 = $('.navbar').find('.nav-contaniner').outerHeight();
-          var height2 = $('.navbar').find('.contaniner').outerHeight();
-          var height3 = $('.navbar').find('.jumbotron').outerHeight();
-          var height4 = $('.carousel-inner').find('.cimg').outerHeight();
-
-          var height = height3;
-          height = height < 335 ? 335 : height;
-          $('.body-content').css({ 'margin-top': height });
-
-          var windowWidth = $(window).width()
-          var $navContainer = $('.nav-contaniner');
-         
-          var navContainerWidth = $navContainer.width();
-          if (windowWidth > 767) {
-              $navContainer.css({width: windowWidth*0.6 });
-              $navContainer.css({ top: 0, left: (windowWidth/2) - (navContainerWidth/2) });
-          } else {
-            
-              $navContainer.css({ top: 0, left: 0 });
-              $navContainer.css({ width: windowWidth });
-          }
-
-          $(window).resize(function () {
-
-              if ($(window).width() > 767) {
-                  $navContainer.css({ width: $(window).width() * 0.6 });
-                  $navContainer.css({ top: 0, left: ($(window).width() / 2) - ($navContainer.width() / 2) });
-              } else  {
-                  $navContainer.css({ top: 0, left: 0 });
-                  $navContainer.css({ width: $(window).width() });
-              }
-          });
-
-      })
-
-  </script>
+    <script src="~/Content/javascripts/Index.min.js"></script>
     <div class="navbar navbar-inverse navbar-fixed-top" id="navbar">
         <div class="container nav-contaniner" style="z-index:100;position:absolute;width:60%;">
             <div class="navbar-header">
@@ -130,19 +79,19 @@ body{
                 <!-- Wrapper for slides -->
                 <div class="carousel-inner" role="listbox">
                     <div class="item active">
-                        <img src="~/sample/background.jpg" alt="..." style="max-height:400px;width:100%;">
+                        <img src="~/Content/images/slide1.jpg" alt="..." style="max-height:400px;width:100%;">
                         <div class="carousel-caption">
                             ...
                         </div>
                     </div>
                     <div class="item">
-                        <img src="~/sample/slide2.gif" alt="..." style="max-height:400px;width:100%;">
+                        <img src="~/Content/images/slide2.gif" alt="..." style="max-height:400px;width:100%;">
                         <div class="carousel-caption">
                             ...
                         </div>
                     </div>
                     <div class="item">
-                        <img src="~/sample/slide5.jpg" alt="..." style="max-height:400px;width:100%;">
+                        <img src="~/Content/images/slide3.jpg" alt="..." style="max-height:400px;width:100%;">
                         <div class="carousel-caption">
                             ...
                         </div>
@@ -166,21 +115,51 @@ body{
         
 
         <div class="row main-content" style="background-color:#f3f3f3;padding-top:25px;padding-bottom:25px;padding-left:25px;padding-right:25px;border-radius:10px;">
-            @for (var i = 1; i <= 12; i++)
+           
+            @if (Model != null) { 
+
+            foreach (var item in Model)
             {
-                var path = "/sample/" + i + ".jpg";
                 <div class="col-md-4 col-xs-4 p-item">
                     <div class="col-md-12">
-                        <div class="col-md-12">
-                            <div class="thumbnail" style="padding-top:15px;">
-                                <img class="img-responsive col-md-12" style="height:auto" src=@path />
-                                <div class="caption text-center">
-                                    My Products
+                        
+                            <div class="col-md-12">
+                                @*<div class="col-md-6">
+                        <a href="@Url.Action("Detail", "Home", new {id = item.ID })"><i class="fa fa-search" aria-hidden="true"></i></a>
+                    </div>*@
+                                <div class="thumbnail" style="padding-top:15px;">
+                                    <img class="img-responsive col-md-12" style="height:auto" src="@item.ImagePath" />
+
+
+                                    <div class="caption text-left Price">
+                                        <div class="col-md-12">
+                                            <a class="name" href="@Url.Action("Detail", "Home", new {id = item.ID })">
+                                                <h4>@item.Name</h4>
+                                            </a>
+                                        </div>
+                                        <div class="col-md-12">
+                                            
+                                           
+                                                <span class="title">價格:</span>
+                                                <i class="min">@item.MinPrice</i>  <i class="fa fa-random" aria-hidden="true"></i> <i class="max">@item.MaxPrice</i>
+
+                                           
+                                        </div>
+                                        <div class="col-md-12 text-right">
+                                            <span class="title">
+                                                <button class="btn btn-success" type="button" style="">
+                                                    破杯價
+                                                    <i class="fa fa-random" aria-hidden="true"></i>
+                                                </button>
+                                            </span>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        
                     </div>
                 </div>
+            }
             }
          
         </div>

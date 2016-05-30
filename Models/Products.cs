@@ -18,6 +18,7 @@ namespace CanBuyWeb.Models
         public Products()
         {
             this.Product_Images = new HashSet<Product_Images>();
+            this.HomeImage = new HashSet<HomeImage>();
         }
     
         public int ID { get; set; }
@@ -31,5 +32,7 @@ namespace CanBuyWeb.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Product_Images> Product_Images { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<HomeImage> HomeImage { get; set; }
     }
 }

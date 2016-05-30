@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="mytestModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="mytestModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="__MigrationHistory">
           <Key>
             <PropertyRef Name="MigrationId" />
@@ -66,6 +66,15 @@
           <Property Name="AccessFailedCount" Type="int" Nullable="false" />
           <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
         </EntityType>
+        <EntityType Name="HomeImage">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Image_Path" Type="nvarchar" MaxLength="500" />
+          <Property Name="Image_Bytes" Type="image" Nullable="false" />
+          <Property Name="Product_Id" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="Product_Images">
           <Key>
             <PropertyRef Name="ID" />
@@ -100,16 +109,6 @@
           <Property Name="created" Type="datetime" Nullable="false" />
           <Property Name="deleted" Type="bit" Nullable="false" />
           <Property Name="userId" Type="nvarchar" MaxLength="150" Nullable="false" />
-        </EntityType>
-        <!--產生期間發現錯誤:
-警告 6002: 資料表/檢視 'mytest.dbo.text' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。-->
-        <EntityType Name="text">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="color" Type="nvarchar" MaxLength="50" />
-          <Property Name="text" Type="nvarchar" MaxLength="30" />
         </EntityType>
         <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
           <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
@@ -167,6 +166,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_HomeImage_Products">
+          <End Role="Products" Type="Self.Products" Multiplicity="1" />
+          <End Role="HomeImage" Type="Self.HomeImage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="HomeImage">
+              <PropertyRef Name="Product_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Product_Images_Products">
           <End Role="Products" Type="Self.Products" Multiplicity="1" />
           <End Role="Product_Images" Type="Self.Product_Images" Multiplicity="*" />
@@ -186,16 +197,10 @@
           <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HomeImage" EntityType="Self.HomeImage" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Product_Images" EntityType="Self.Product_Images" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="temp_image" EntityType="Self.temp_image" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="text" EntityType="Self.text" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [text].[ID] AS [ID], 
-    [text].[color] AS [color], 
-    [text].[text] AS [text]
-    FROM [dbo].[text] AS [text]</DefiningQuery>
-          </EntitySet>
           <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
@@ -211,6 +216,10 @@
           <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HomeImage_Products" Association="Self.FK_HomeImage_Products">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="HomeImage" EntitySet="HomeImage" />
           </AssociationSet>
           <AssociationSet Name="FK_Product_Images_Products" Association="Self.FK_Product_Images_Products">
             <End Role="Products" EntitySet="Products" />
@@ -280,14 +289,6 @@
           <NavigationProperty Name="AspNetUserLogins" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
           <NavigationProperty Name="AspNetRoles" Relationship="Self.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
         </EntityType>
-        <EntityType Name="text">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="color" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="text1" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
-        </EntityType>
         <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
           <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -326,7 +327,6 @@
           <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" />
           <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" />
           <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" />
-          <EntitySet Name="text" EntityType="Self.text" />
           <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
@@ -346,6 +346,11 @@
             <End Role="Product_Images" EntitySet="Product_Images" />
           </AssociationSet>
           <EntitySet Name="temp_image" EntityType="mytestModel.temp_image" />
+          <EntitySet Name="HomeImage" EntityType="mytestModel.HomeImage" />
+          <AssociationSet Name="FK_HomeImage_Products" Association="mytestModel.FK_HomeImage_Products">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="HomeImage" EntitySet="HomeImage" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Product_Images">
           <Key>
@@ -372,6 +377,7 @@
           <Property Name="MinPrice" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
           <Property Name="MaxPrice" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
           <NavigationProperty Name="Product_Images" Relationship="mytestModel.FK_Product_Images_Products" FromRole="Products" ToRole="Product_Images" />
+          <NavigationProperty Name="HomeImage" Relationship="mytestModel.FK_HomeImage_Products" FromRole="Products" ToRole="HomeImage" />
         </EntityType>
         <Association Name="FK_Product_Images_Products">
           <End Type="mytestModel.Products" Role="Products" Multiplicity="1" />
@@ -396,6 +402,28 @@
           <Property Name="deleted" Type="Boolean" Nullable="false" />
           <Property Name="userId" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
         </EntityType>
+        <EntityType Name="HomeImage">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Image_Path" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Image_Bytes" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+          <Property Name="Product_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Products" Relationship="mytestModel.FK_HomeImage_Products" FromRole="HomeImage" ToRole="Products" />
+        </EntityType>
+        <Association Name="FK_HomeImage_Products">
+          <End Type="mytestModel.Products" Role="Products" Multiplicity="1" />
+          <End Type="mytestModel.HomeImage" Role="HomeImage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="HomeImage">
+              <PropertyRef Name="Product_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -457,15 +485,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="text">
-            <EntityTypeMapping TypeName="mytestModel.text">
-              <MappingFragment StoreEntitySet="text">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="color" ColumnName="color" />
-                <ScalarProperty Name="text1" ColumnName="text" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <AssociationSetMapping Name="AspNetUserRoles" TypeName="mytestModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
             <EndProperty Name="AspNetRoles">
               <ScalarProperty Name="Id" ColumnName="RoleId" />
@@ -508,6 +527,16 @@
                 <ScalarProperty Name="created" ColumnName="created" />
                 <ScalarProperty Name="image_Byte" ColumnName="image_Byte" />
                 <ScalarProperty Name="image_Path" ColumnName="image_Path" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HomeImage">
+            <EntityTypeMapping TypeName="mytestModel.HomeImage">
+              <MappingFragment StoreEntitySet="HomeImage">
+                <ScalarProperty Name="Product_Id" ColumnName="Product_Id" />
+                <ScalarProperty Name="Image_Bytes" ColumnName="Image_Bytes" />
+                <ScalarProperty Name="Image_Path" ColumnName="Image_Path" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>

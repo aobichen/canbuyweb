@@ -56,15 +56,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="text">
-      <EntityTypeMapping TypeName="mytestModel.text">
-        <MappingFragment StoreEntitySet="text">
-          <ScalarProperty Name="ID" ColumnName="ID" />
-          <ScalarProperty Name="color" ColumnName="color" />
-          <ScalarProperty Name="text1" ColumnName="text" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <AssociationSetMapping Name="AspNetUserRoles" TypeName="mytestModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
       <EndProperty Name="AspNetRoles">
         <ScalarProperty Name="Id" ColumnName="RoleId" />
@@ -107,6 +98,16 @@
           <ScalarProperty Name="created" ColumnName="created" />
           <ScalarProperty Name="image_Byte" ColumnName="image_Byte" />
           <ScalarProperty Name="image_Path" ColumnName="image_Path" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HomeImage">
+      <EntityTypeMapping TypeName="mytestModel.HomeImage">
+        <MappingFragment StoreEntitySet="HomeImage">
+          <ScalarProperty Name="Product_Id" ColumnName="Product_Id" />
+          <ScalarProperty Name="Image_Bytes" ColumnName="Image_Bytes" />
+          <ScalarProperty Name="Image_Path" ColumnName="Image_Path" />
           <ScalarProperty Name="ID" ColumnName="ID" />
         </MappingFragment>
       </EntityTypeMapping>

@@ -30,9 +30,9 @@ namespace CanBuyWeb.Models
         public virtual DbSet<AspNetUserClaims> AspNetUserClaims { get; set; }
         public virtual DbSet<AspNetUserLogins> AspNetUserLogins { get; set; }
         public virtual DbSet<AspNetUsers> AspNetUsers { get; set; }
-        public virtual DbSet<text> text { get; set; }
         public virtual DbSet<Product_Images> Product_Images { get; set; }
         public virtual DbSet<Products> Products { get; set; }
         public virtual DbSet<temp_image> temp_image { get; set; }
+        public virtual DbSet<HomeImage> HomeImage { get; set; }
     }
 }

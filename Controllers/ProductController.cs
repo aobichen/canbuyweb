@@ -61,6 +61,20 @@ namespace CanBuyWeb.Controllers
                             IsPrimary = true,
                             Product_Id = product.ID
                         });
+
+
+                        var image_handel = new ImageHandle();
+                        var newImage = image_handel.BufferToImage(temp.image_Byte);
+                        var img = image_handel.ResizeImage(newImage, 500, 600);
+                        var filename = Guid.NewGuid().ToString();
+                        var imagpath = image_handel.path + filename + ".jpeg";
+                        img.Save(Server.MapPath(imagpath));
+                        db.HomeImage.Add(new HomeImage
+                        {
+                            Image_Bytes = image_handel.ImageToBuffer(img, System.Drawing.Imaging.ImageFormat.Jpeg),
+                            Image_Path = imagpath,
+                           Product_Id = product.ID
+                        });
                     }
                     else
                     {
@@ -173,7 +187,15 @@ namespace CanBuyWeb.Controllers
         // GET: Product
         public ActionResult Index()
         {
-            return View();
+            var model = db.Products.Select(x => new ProductIndex
+            {
+                Name = x.Name,
+                MinPrice = x.MinPrice,
+                MaxPrice = x.MaxPrice,
+                ImageId = x.Product_Images.Where(o=>o.IsPrimary).FirstOrDefault().ID,
+                ImagePath = x.Product_Images.Where(o => o.IsPrimary).FirstOrDefault().Image_Path
+            });
+            return View(model);
         }
     }
 }

@@ -60,17 +60,17 @@ namespace CanBuyWeb.Controllers
                     var imagpath = imghandle.path + filename + ".jpeg";
                     var postedFile = files[i].InputStream;
                     var image = System.Drawing.Image.FromStream(postedFile);
-                    var newImage = imghandle.ResizeImage(image, 500, 600);
+                    //var newImage = imghandle.ResizeImage(image, 500, 600);
 
                     var tempimg = db.temp_image.Add(new temp_image
                     {
-                        image_Byte = imghandle.ImageToBuffer(newImage, System.Drawing.Imaging.ImageFormat.Jpeg),
+                        image_Byte = imghandle.ImageToBuffer(image, System.Drawing.Imaging.ImageFormat.Jpeg),
                         userId = UserId,
                         image_Path = imagpath,
                         created = DateTime.Now,
                         deleted = false
                     });
-                    newImage.Save(Server.MapPath(imagpath));
+                    image.Save(Server.MapPath(imagpath));
                     db.SaveChanges();
                     idList.Add(new ImageVM { id = tempimg.ID.ToString(), path = tempimg.image_Path, isTemp = true });
                 }
