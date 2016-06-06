@@ -197,5 +197,19 @@ namespace CanBuyWeb.Controllers
             });
             return View(model);
         }
+
+        public ActionResult Detail(int Id)
+        {
+            var model = db.Products.Where(o => o.ID == Id).Select(x => new ProductDetail
+            {
+                ID = x.ID,
+                description = x.Description,
+                MaxPrice = x.MaxPrice,
+                MinPrice = x.MinPrice,
+                Name = x.Name,
+                Images = x.Product_Images.ToList()
+            }).FirstOrDefault();
+            return View(model);
+        }
     }
 }

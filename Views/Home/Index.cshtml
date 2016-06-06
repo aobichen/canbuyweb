@@ -40,7 +40,7 @@ body{
 </head>
 <body>
 
-    <script src="~/Content/javascripts/Index.min.js"></script>
+    <script src="~/Content/javascripts/Index.js"></script>
     <div class="navbar navbar-inverse navbar-fixed-top" id="navbar">
         <div class="container nav-contaniner" style="z-index:100;position:absolute;width:60%;">
             <div class="navbar-header">
@@ -114,9 +114,9 @@ body{
     <div class="container body-content" style="margin-top:101px;">
         
 
-        <div class="row main-content" style="background-color:#f3f3f3;padding-top:25px;padding-bottom:25px;padding-left:25px;padding-right:25px;border-radius:10px;">
+        <div class="row main-content">
            
-            @if (Model != null) { 
+            @if (Model != null && Model.Count()>0) { 
 
             foreach (var item in Model)
             {
@@ -128,28 +128,30 @@ body{
                         <a href="@Url.Action("Detail", "Home", new {id = item.ID })"><i class="fa fa-search" aria-hidden="true"></i></a>
                     </div>*@
                                 <div class="thumbnail" style="padding-top:15px;">
-                                    <img class="img-responsive col-md-12" style="height:auto" src="@item.ImagePath" />
-
+                                    <a href="@Url.Action("Detail", "Product", new {Id = item.ID })">
+                                        <img class="img-responsive col-md-12" style="height:auto" src="@item.ImagePath" />
+                                    </a>
 
                                     <div class="caption text-left Price">
                                         <div class="col-md-12">
-                                            <a class="name" href="@Url.Action("Detail", "Home", new {id = item.ID })">
+                                            <a class="name" href="@Url.Action("Detail", "Product", new {Id = item.ID })">
                                                 <h4>@item.Name</h4>
                                             </a>
                                         </div>
-                                        <div class="col-md-12">
+                                        <div class="col-md-12" style="font-weight:bold;color:#ed3729;font-size:121%;">
                                             
                                            
-                                                <span class="title">價格:</span>
-                                                <i class="min">@item.MinPrice</i>  <i class="fa fa-random" aria-hidden="true"></i> <i class="max">@item.MaxPrice</i>
+                                            @*<i class="fa fa-usd" aria-hidden="true"></i>*@
+                                           $ <i class="min">@item.MinPrice</i>  @*<i class="fa fa-random" aria-hidden="true"></i>*@ ~ <i class="max">@item.MaxPrice.ToString("#,##0")</i>
 
                                            
                                         </div>
-                                        <div class="col-md-12 text-right">
+                                        <div class="col-md-12 text-left">
+                                            @Html.Partial("_RandomModal")
                                             <span class="title">
-                                                <button class="btn btn-success" type="button" style="">
-                                                    破杯價
-                                                    <i class="fa fa-random" aria-hidden="true"></i>
+                                                <button class="btn btn-lucky" type="button" id="btnRandom" data-toggle="modal" data-target="#randomModal">
+                                                    運
+                                                    @*<i class="fa fa-random" aria-hidden="true"></i>*@
                                                 </button>
                                             </span>
                                         </div>

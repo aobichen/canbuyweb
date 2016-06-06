@@ -80,3 +80,4 @@ D:\CanBuyWeb\CanBuyWeb\bin\zh-Hant\Microsoft.Owin.Security.Twitter.resources.dll
 D:\CanBuyWeb\CanBuyWeb\bin\zh-Hant\Microsoft.Owin.Security.MicrosoftAccount.resources.dll
 D:\CanBuyWeb\CanBuyWeb\obj\Release\CanBuyWeb.dll
 D:\CanBuyWeb\CanBuyWeb\obj\Release\CanBuyWeb.pdb
+D:\CanBuyWeb\CanBuyWeb\obj\Release\CanBuyWeb.csprojResolveAssemblyReference.cache
