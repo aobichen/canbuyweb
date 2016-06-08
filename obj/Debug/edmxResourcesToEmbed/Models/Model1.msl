@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="mytestModelStoreContainer" CdmEntityContainer="mytestEntities">
+  <EntityContainerMapping StorageEntityContainer="canbuydbModelStoreContainer" CdmEntityContainer="canbuydbEntities">
     <EntitySetMapping Name="C__MigrationHistory">
-      <EntityTypeMapping TypeName="mytestModel.C__MigrationHistory">
+      <EntityTypeMapping TypeName="canbuydbModel.C__MigrationHistory">
         <MappingFragment StoreEntitySet="__MigrationHistory">
           <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
           <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
@@ -12,7 +12,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="AspNetRoles">
-      <EntityTypeMapping TypeName="mytestModel.AspNetRoles">
+      <EntityTypeMapping TypeName="canbuydbModel.AspNetRoles">
         <MappingFragment StoreEntitySet="AspNetRoles">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Name" ColumnName="Name" />
@@ -20,7 +20,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="AspNetUserClaims">
-      <EntityTypeMapping TypeName="mytestModel.AspNetUserClaims">
+      <EntityTypeMapping TypeName="canbuydbModel.AspNetUserClaims">
         <MappingFragment StoreEntitySet="AspNetUserClaims">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="UserId" ColumnName="UserId" />
@@ -30,7 +30,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="AspNetUserLogins">
-      <EntityTypeMapping TypeName="mytestModel.AspNetUserLogins">
+      <EntityTypeMapping TypeName="canbuydbModel.AspNetUserLogins">
         <MappingFragment StoreEntitySet="AspNetUserLogins">
           <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
           <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
@@ -39,7 +39,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="AspNetUsers">
-      <EntityTypeMapping TypeName="mytestModel.AspNetUsers">
+      <EntityTypeMapping TypeName="canbuydbModel.AspNetUsers">
         <MappingFragment StoreEntitySet="AspNetUsers">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Email" ColumnName="Email" />
@@ -56,7 +56,55 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <AssociationSetMapping Name="AspNetUserRoles" TypeName="mytestModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
+    <EntitySetMapping Name="HomeImage">
+      <EntityTypeMapping TypeName="canbuydbModel.HomeImage">
+        <MappingFragment StoreEntitySet="HomeImage">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Image_Path" ColumnName="Image_Path" />
+          <ScalarProperty Name="Image_Bytes" ColumnName="Image_Bytes" />
+          <ScalarProperty Name="Product_Id" ColumnName="Product_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Product_Images">
+      <EntityTypeMapping TypeName="canbuydbModel.Product_Images">
+        <MappingFragment StoreEntitySet="Product_Images">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Product_Id" ColumnName="Product_Id" />
+          <ScalarProperty Name="Image_Path" ColumnName="Image_Path" />
+          <ScalarProperty Name="Image_Byte" ColumnName="Image_Byte" />
+          <ScalarProperty Name="IsPrimary" ColumnName="IsPrimary" />
+          <ScalarProperty Name="Sort" ColumnName="Sort" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Products">
+      <EntityTypeMapping TypeName="canbuydbModel.Products">
+        <MappingFragment StoreEntitySet="Products">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="Enable" ColumnName="Enable" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="MinPrice" ColumnName="MinPrice" />
+          <ScalarProperty Name="MaxPrice" ColumnName="MaxPrice" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="temp_image">
+      <EntityTypeMapping TypeName="canbuydbModel.temp_image">
+        <MappingFragment StoreEntitySet="temp_image">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="image_Path" ColumnName="image_Path" />
+          <ScalarProperty Name="image_Byte" ColumnName="image_Byte" />
+          <ScalarProperty Name="created" ColumnName="created" />
+          <ScalarProperty Name="deleted" ColumnName="deleted" />
+          <ScalarProperty Name="userId" ColumnName="userId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="AspNetUserRoles" TypeName="canbuydbModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
       <EndProperty Name="AspNetRoles">
         <ScalarProperty Name="Id" ColumnName="RoleId" />
       </EndProperty>
@@ -64,50 +112,13 @@
         <ScalarProperty Name="Id" ColumnName="UserId" />
       </EndProperty>
     </AssociationSetMapping>
-    <EntitySetMapping Name="Product_Images">
-      <EntityTypeMapping TypeName="mytestModel.Product_Images">
-        <MappingFragment StoreEntitySet="Product_Images">
-          <ScalarProperty Name="Sort" ColumnName="Sort" />
-          <ScalarProperty Name="IsPrimary" ColumnName="IsPrimary" />
-          <ScalarProperty Name="Image_Byte" ColumnName="Image_Byte" />
-          <ScalarProperty Name="Image_Path" ColumnName="Image_Path" />
-          <ScalarProperty Name="Product_Id" ColumnName="Product_Id" />
-          <ScalarProperty Name="ID" ColumnName="ID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Products">
-      <EntityTypeMapping TypeName="mytestModel.Products">
-        <MappingFragment StoreEntitySet="Products">
-          <ScalarProperty Name="MaxPrice" ColumnName="MaxPrice" />
-          <ScalarProperty Name="MinPrice" ColumnName="MinPrice" />
+    <EntitySetMapping Name="Rotation">
+      <EntityTypeMapping TypeName="canbuydbModel.Rotation">
+        <MappingFragment StoreEntitySet="Rotation">
           <ScalarProperty Name="UserId" ColumnName="UserId" />
-          <ScalarProperty Name="Enable" ColumnName="Enable" />
-          <ScalarProperty Name="Price" ColumnName="Price" />
-          <ScalarProperty Name="Description" ColumnName="Description" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
-          <ScalarProperty Name="ID" ColumnName="ID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="temp_image">
-      <EntityTypeMapping TypeName="mytestModel.temp_image">
-        <MappingFragment StoreEntitySet="temp_image">
-          <ScalarProperty Name="userId" ColumnName="userId" />
-          <ScalarProperty Name="deleted" ColumnName="deleted" />
-          <ScalarProperty Name="created" ColumnName="created" />
-          <ScalarProperty Name="image_Byte" ColumnName="image_Byte" />
-          <ScalarProperty Name="image_Path" ColumnName="image_Path" />
-          <ScalarProperty Name="ID" ColumnName="ID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="HomeImage">
-      <EntityTypeMapping TypeName="mytestModel.HomeImage">
-        <MappingFragment StoreEntitySet="HomeImage">
-          <ScalarProperty Name="Product_Id" ColumnName="Product_Id" />
-          <ScalarProperty Name="Image_Bytes" ColumnName="Image_Bytes" />
-          <ScalarProperty Name="Image_Path" ColumnName="Image_Path" />
+          <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+          <ScalarProperty Name="IP" ColumnName="IP" />
+          <ScalarProperty Name="Created" ColumnName="Created" />
           <ScalarProperty Name="ID" ColumnName="ID" />
         </MappingFragment>
       </EntityTypeMapping>

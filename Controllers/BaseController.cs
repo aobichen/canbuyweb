@@ -18,7 +18,7 @@ namespace CanBuyWeb.Controllers
             }
         }
 
-        protected mytestEntities db = new mytestEntities();
+        protected canbuydbEntities db = new canbuydbEntities();
 
         protected string UserId { get; set; } 
         // GET: Base
@@ -40,5 +40,7 @@ namespace CanBuyWeb.Controllers
                 }
                 return userIdValue;
         }
+
+
     }
 }

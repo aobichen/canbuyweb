@@ -4,21 +4,22 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="c07dc2efe5e24998a91c31dc3053184a" Name="Diagram1">
-        <EntityTypeShape EntityType="mytestModel.C__MigrationHistory" Width="1.5" PointX="0.75" PointY="6.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="mytestModel.AspNetRoles" Width="1.5" PointX="0.75" PointY="2.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="mytestModel.AspNetUserClaims" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="mytestModel.AspNetUserLogins" Width="1.5" PointX="5.25" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="mytestModel.AspNetUsers" Width="1.5" PointX="3" PointY="1.375" IsExpanded="true" />
-        <AssociationConnector Association="mytestModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
-        <AssociationConnector Association="mytestModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
-        <AssociationConnector Association="mytestModel.AspNetUserRoles" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="mytestModel.Product_Images" Width="1.5" PointX="7.625" PointY="7.125" />
-        <EntityTypeShape EntityType="mytestModel.Products" Width="1.5" PointX="5.375" PointY="7" />
-        <AssociationConnector Association="mytestModel.FK_Product_Images_Products" />
-        <EntityTypeShape EntityType="mytestModel.temp_image" Width="1.5" PointX="7.375" PointY="0.75" />
-        <EntityTypeShape EntityType="mytestModel.HomeImage" Width="1.5" PointX="7.625" PointY="10.5" />
-        <AssociationConnector Association="mytestModel.FK_HomeImage_Products" />
+      <Diagram DiagramId="d82751547e554f1c960023d9d1571fa9" Name="Diagram1">
+        <EntityTypeShape EntityType="canbuydbModel.C__MigrationHistory" Width="1.5" PointX="5.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="canbuydbModel.AspNetRoles" Width="1.5" PointX="0.75" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="canbuydbModel.AspNetUserClaims" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="canbuydbModel.AspNetUserLogins" Width="1.5" PointX="5.25" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="canbuydbModel.AspNetUsers" Width="1.5" PointX="3" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="canbuydbModel.HomeImage" Width="1.5" PointX="3" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="canbuydbModel.Product_Images" Width="1.5" PointX="3" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="canbuydbModel.Products" Width="1.5" PointX="0.75" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="canbuydbModel.temp_image" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="canbuydbModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="canbuydbModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="canbuydbModel.FK_HomeImage_Products" ManuallyRouted="false" />
+        <AssociationConnector Association="canbuydbModel.FK_Product_Images_Products" ManuallyRouted="false" />
+        <AssociationConnector Association="canbuydbModel.AspNetUserRoles" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="canbuydbModel.Rotation" Width="1.5" PointX="7.375" PointY="3.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

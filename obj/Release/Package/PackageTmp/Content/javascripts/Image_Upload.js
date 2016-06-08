@@ -113,7 +113,7 @@
 
     function renderThumbnail(id, path, isprimary) {
        
-        var col = $('<div class="col-md-3"></div>');
+        var col = $('<div class="col-md-3 col-sm-3"></div>');
         var thumbnail = $('<div class="thumbnail"></div>');
         var image = $('<img/>').addClass('thumbnail-img').attr('src', path).attr('data-id', id);
 
@@ -121,11 +121,11 @@
         if (isprimary) {
             checkbox.attr('checked', true);
         }
-        var chkdiv = $('<div class="col-md-6 text-left"></div>');
+        var chkdiv = $('<div class="col-md-6 col-sm-6 text-left"></div>');
         chkdiv.append(checkbox);
         chkdiv.append('<span>主圖</span>');
         var removeitag = $('<i class="glyphicon glyphicon-remove removeimg"></i>').attr('id', id);
-        var remove = $('<div class="col-md-6 text-right"></div>').append(removeitag);
+        var remove = $('<div class="col-md-6 col-sm-6 text-right"></div>').append(removeitag);
         thumbnail.append(image);
         thumbnail.append(remove);
         col.append(thumbnail);
@@ -139,21 +139,24 @@
     function upload(event) {
         event.stopPropagation(); // Stop stuff happening
         event.preventDefault(); // Totally stop stuff happening
-        var data = new FormData();
-        files = event.target.files;
-        $.each(files, function (key, value) {
-            data.append(key, value);
-        });
-
+        $("#errorMsg").hide();
+        
+        var fileUpload = $("#fileupload")[0];
+        var files = fileUpload.files;
+        var fileData = new FormData();
+        for (var i = 0; i < files.length; i++) {  
+            fileData.append(files[i].name, files[i]);  
+        }  
+              
+    
         $.ajax({
             url: $('#imageuploadurl').val(),
 
             type: 'POST',
-            data: data,
-            cache: false,
-            dataType: 'json',
-            processData: false, // Don't process the files
-            contentType: false, // Set content type to false as jQuery will tell the server its a query string request
+            data: fileData,
+          
+            processData: false, 
+            contentType: false, 
             success: function (data, textStatus, jqXHR) {
 
                 $fileupload.val("");
@@ -165,7 +168,9 @@
                 setImage();
             },
             error: function (jqXHR, textStatus, errorThrown) {
+                
                 $fileupload.val("");
+                $("#errorMsg").html("圖片無法上傳").show();
                 // Handle errors here
                 console.log('ERRORS: ' + textStatus);
                 // STOP LOADING SPINNER

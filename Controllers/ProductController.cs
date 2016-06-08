@@ -71,7 +71,7 @@ namespace CanBuyWeb.Controllers
                         img.Save(Server.MapPath(imagpath));
                         db.HomeImage.Add(new HomeImage
                         {
-                            Image_Bytes = image_handel.ImageToBuffer(img, System.Drawing.Imaging.ImageFormat.Jpeg),
+                            Image_Bytes = image_handel.ImageToBuffer(newImage, System.Drawing.Imaging.ImageFormat.Jpeg),
                             Image_Path = imagpath,
                            Product_Id = product.ID
                         });
@@ -210,6 +210,54 @@ namespace CanBuyWeb.Controllers
                 Images = x.Product_Images.ToList()
             }).FirstOrDefault();
             return View(model);
+        }
+
+
+        
+
+        [HttpPost]
+        public object GetPrice(int id)
+        {
+            var p = db.Products.Where(o => o.ID == id).FirstOrDefault();
+            var min = int.Parse(p.MinPrice.ToString());
+            var max = int.Parse(p.MaxPrice.ToString());
+            Random rnd = new Random();
+            var price = rnd.Next(min, max);
+            var unLoginLimit = 20;
+            var LoginLimit = 50;
+           
+             var count = 0;
+            var ip = System.Web.HttpContext.Current.Request.UserHostAddress;
+            var cannext = true;
+            if (!User.Identity.IsAuthenticated)
+            {
+                var Rotation = db.Rotation.Add(new Rotation { Created = DateTime.Now, IP = ip, ProductId = id });
+                db.SaveChanges();
+                count = db.Rotation.Where(o => o.IP == ip && o.Created <= DateTime.Now).Count();
+                cannext = count >= unLoginLimit ? false : true;
+                if (Session[ip] == null)
+                {
+                    Session[ip] = new ProductOrderSession { Price = price, ProductId = id };
+                }
+            }
+            else
+            {
+
+                var Rotation = db.Rotation.Add(new Rotation { Created = DateTime.Now, IP = ip, UserId = Convert.ToInt32(UserId), ProductId = Convert.ToInt32(id) });
+                db.SaveChanges();
+                count = db.Rotation.Where(o => o.IP == ip && o.Created <= DateTime.Now && o.ProductId == id).Count();
+                cannext = count >= LoginLimit ? false : true;
+                if (Session[UserId] == null)
+                {
+                    Session[UserId] = new ProductOrderSession { Price = price, ProductId = id };
+                }
+            }
+
+            if (!cannext){
+                 return Json(new { price = 999999, success = false,message="加入會員可以有更多機會喔!", cannext = cannext });
+            }
+           
+            return Json(new { price = price, success = true, cannext = cannext });
         }
     }
 }

@@ -9,6 +9,8 @@
 
 
 <div class="row">
+
+    <script src="~/Content/javascripts/Detail.js"></script>
     <div class="panel">
         <div class="panel-heading">
             <h2>@Model.Name</h2>
@@ -31,16 +33,18 @@
                             if (i <= 0)
                             {
                                 <div class="item active">
-                                    <img src="@Model.Images[i].Image_Path" alt="..." style="max-height:400px;width:100%;">
-
-                                </div>
+                                    <div class="thumbnail">
+                                        <img class="img-responsive" src="@Model.Images[i].Image_Path" alt="..." >
+                                        </div>
+                                    </div>
                             }
                             else
                             {
                                 <div class="item ">
-                                    <img src="@Model.Images[i].Image_Path" alt="..." style="max-height:400px;width:100%;">
-
-                                </div>
+                                    <div class="thumbnail">
+                                        <img class="img-responsive" src="@Model.Images[i].Image_Path" alt="..." >
+                                        </div>
+                                    </div>
                             }
                         }
                     </div>
@@ -71,6 +75,7 @@
                     </dt>
 
                     <dd>
+                        <input class="min" type="hidden" value="@Model.MinPrice" />
                         @*@Html.DisplayFor(model => model.MinPrice)*@
                         @Model.MinPrice
                     </dd>
@@ -81,6 +86,7 @@
                     </dt>
 
                     <dd>
+                        <input class="max" type="hidden" value="@Model.MaxPrice" />
                         @Model.MaxPrice.ToString("#,##0")
                     </dd>
 
@@ -95,8 +101,8 @@
 
                 </dl>
                 <div class="well">
-                    <button class="btn btn-lucky-lg" type="button" id="btnRandom" data-toggle="modal" data-target="#randomModal">
-                        運
+                    <button class="btn btn-lucky-lg" data-id="@Model.ID" type="button" id="btnRandom" data-toggle="modal" >
+                        PUSH
                         @*<i class="fa fa-random" aria-hidden="true"></i>*@
                     </button>
                 </div>
@@ -113,5 +119,6 @@
             </div>
         </div>
     @Html.Partial("_RandomModal")
+    @Html.Partial("_Alert")
 </div>
 

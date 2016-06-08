@@ -36,6 +36,20 @@ namespace IdentitySample.Controllers
             return View();
         }
 
+
+        [HttpPost]
+        public object GetNext()
+        {
+            var limit = 20;
+            var ip = System.Web.HttpContext.Current.Request.UserHostAddress;
+            var CurrentDate = DateTime.Now;
+            var Next = DateTime.Parse(CurrentDate.AddDays(1).ToShortDateString());
+            var Prev = DateTime.Parse(CurrentDate.ToShortDateString());
+            var count = db.Rotation.Where(o => o.IP == ip && (o.Created <= Next && o.Created > Prev)).Count();
+            var cannext = count <= limit ? false : true;
+            return Json(new { cannext=cannext });
+        }
+
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";

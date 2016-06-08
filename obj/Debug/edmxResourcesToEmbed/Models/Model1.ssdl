@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="mytestModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+<Schema Namespace="canbuydbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
   <EntityType Name="__MigrationHistory">
     <Key>
       <PropertyRef Name="MigrationId" />
@@ -94,6 +94,16 @@
     <Property Name="MinPrice" Type="decimal" Precision="18" Scale="0" Nullable="false" />
     <Property Name="MaxPrice" Type="decimal" Precision="18" Scale="0" Nullable="false" />
   </EntityType>
+  <EntityType Name="Rotation">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Created" Type="datetime" Nullable="false" />
+    <Property Name="IP" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="ProductId" Type="int" />
+    <Property Name="UserId" Type="int" />
+  </EntityType>
   <EntityType Name="temp_image">
     <Key>
       <PropertyRef Name="ID" />
@@ -185,7 +195,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="mytestModelStoreContainer">
+  <EntityContainer Name="canbuydbModelStoreContainer">
     <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
@@ -195,6 +205,7 @@
     <EntitySet Name="HomeImage" EntityType="Self.HomeImage" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Product_Images" EntityType="Self.Product_Images" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Rotation" EntityType="Self.Rotation" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="temp_image" EntityType="Self.temp_image" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
       <End Role="AspNetUsers" EntitySet="AspNetUsers" />

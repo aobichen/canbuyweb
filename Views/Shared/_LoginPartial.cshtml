@@ -7,7 +7,7 @@
         <ul class="nav navbar-nav navbar-right">
             @if (Request.IsAuthenticated && User.IsInRole("User"))
             {
-                <li >@Html.ActionLink("賣點東西吧", "Create", "Product", null, new { @style = "color:#52b6ec;font-family:思源黑體;text-shadow: 2px 2px #FCFCFC;" })</li>
+                @*<li >@Html.ActionLink("賣點東西吧", "Create", "Product", null, new { @style = "color:#52b6ec;font-family:思源黑體;text-shadow: 2px 2px #FCFCFC;" })</li>*@
                  <li>@Html.ActionLink("我的賣場", "List", "Product", null, new { @style = "color:#52b6ec;font-family:思源黑體;text-shadow: 2px 2px #FCFCFC;" })</li>
             }
             <li>

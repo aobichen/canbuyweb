@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="mytestModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+<Schema Namespace="canbuydbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
   <EntityType Name="C__MigrationHistory">
     <Key>
       <PropertyRef Name="MigrationId" />
@@ -59,6 +59,54 @@
     <NavigationProperty Name="AspNetUserLogins" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
     <NavigationProperty Name="AspNetRoles" Relationship="Self.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
   </EntityType>
+  <EntityType Name="HomeImage">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Image_Path" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Image_Bytes" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+    <Property Name="Product_Id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Products" Relationship="Self.FK_HomeImage_Products" FromRole="HomeImage" ToRole="Products" />
+  </EntityType>
+  <EntityType Name="Product_Images">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Product_Id" Type="Int32" Nullable="false" />
+    <Property Name="Image_Path" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Image_Byte" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+    <Property Name="IsPrimary" Type="Boolean" Nullable="false" />
+    <Property Name="Sort" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Products" Relationship="Self.FK_Product_Images_Products" FromRole="Product_Images" ToRole="Products" />
+  </EntityType>
+  <EntityType Name="Products">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Price" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="Enable" Type="Boolean" Nullable="false" />
+    <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="MinPrice" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="MaxPrice" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <NavigationProperty Name="HomeImage" Relationship="Self.FK_HomeImage_Products" FromRole="Products" ToRole="HomeImage" />
+    <NavigationProperty Name="Product_Images" Relationship="Self.FK_Product_Images_Products" FromRole="Products" ToRole="Product_Images" />
+  </EntityType>
+  <EntityType Name="temp_image">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="image_Path" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="image_Byte" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+    <Property Name="created" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="deleted" Type="Boolean" Nullable="false" />
+    <Property Name="userId" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
   <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
     <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
       <OnDelete Action="Cascade" />
@@ -87,104 +135,9 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="AspNetUserRoles">
-    <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="*" />
-    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="*" />
-  </Association>
-  <EntityContainer Name="mytestEntities" annotation:LazyLoadingEnabled="true">
-    <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
-    <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" />
-    <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" />
-    <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" />
-    <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" />
-    <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
-      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
-      <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
-    </AssociationSet>
-    <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
-      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
-      <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
-    </AssociationSet>
-    <AssociationSet Name="AspNetUserRoles" Association="Self.AspNetUserRoles">
-      <End Role="AspNetRoles" EntitySet="AspNetRoles" />
-      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
-    </AssociationSet>
-    <EntitySet Name="Product_Images" EntityType="mytestModel.Product_Images" />
-    <EntitySet Name="Products" EntityType="mytestModel.Products" />
-    <AssociationSet Name="FK_Product_Images_Products" Association="mytestModel.FK_Product_Images_Products">
-      <End Role="Products" EntitySet="Products" />
-      <End Role="Product_Images" EntitySet="Product_Images" />
-    </AssociationSet>
-    <EntitySet Name="temp_image" EntityType="mytestModel.temp_image" />
-    <EntitySet Name="HomeImage" EntityType="mytestModel.HomeImage" />
-    <AssociationSet Name="FK_HomeImage_Products" Association="mytestModel.FK_HomeImage_Products">
-      <End Role="Products" EntitySet="Products" />
-      <End Role="HomeImage" EntitySet="HomeImage" />
-    </AssociationSet>
-  </EntityContainer>
-  <EntityType Name="Product_Images">
-    <Key>
-      <PropertyRef Name="ID" />
-    </Key>
-    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Product_Id" Type="Int32" Nullable="false" />
-    <Property Name="Image_Path" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-    <Property Name="Image_Byte" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
-    <Property Name="IsPrimary" Type="Boolean" Nullable="false" />
-    <Property Name="Sort" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="Products" Relationship="mytestModel.FK_Product_Images_Products" FromRole="Product_Images" ToRole="Products" />
-  </EntityType>
-  <EntityType Name="Products">
-    <Key>
-      <PropertyRef Name="ID" />
-    </Key>
-    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="Description" Type="String" Nullable="false" MaxLength="2000" FixedLength="false" Unicode="true" />
-    <Property Name="Price" Type="Decimal" Precision="18" Scale="0" />
-    <Property Name="Enable" Type="Boolean" Nullable="false" />
-    <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-    <Property Name="MinPrice" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
-    <Property Name="MaxPrice" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
-    <NavigationProperty Name="Product_Images" Relationship="mytestModel.FK_Product_Images_Products" FromRole="Products" ToRole="Product_Images" />
-    <NavigationProperty Name="HomeImage" Relationship="mytestModel.FK_HomeImage_Products" FromRole="Products" ToRole="HomeImage" />
-  </EntityType>
-  <Association Name="FK_Product_Images_Products">
-    <End Type="mytestModel.Products" Role="Products" Multiplicity="1" />
-    <End Type="mytestModel.Product_Images" Role="Product_Images" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Products">
-        <PropertyRef Name="ID" />
-      </Principal>
-      <Dependent Role="Product_Images">
-        <PropertyRef Name="Product_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <EntityType Name="temp_image">
-    <Key>
-      <PropertyRef Name="ID" />
-    </Key>
-    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="image_Path" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
-    <Property Name="image_Byte" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
-    <Property Name="created" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="deleted" Type="Boolean" Nullable="false" />
-    <Property Name="userId" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
-  </EntityType>
-  <EntityType Name="HomeImage">
-    <Key>
-      <PropertyRef Name="ID" />
-    </Key>
-    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Image_Path" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-    <Property Name="Image_Bytes" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
-    <Property Name="Product_Id" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="Products" Relationship="mytestModel.FK_HomeImage_Products" FromRole="HomeImage" ToRole="Products" />
-  </EntityType>
   <Association Name="FK_HomeImage_Products">
-    <End Type="mytestModel.Products" Role="Products" Multiplicity="1" />
-    <End Type="mytestModel.HomeImage" Role="HomeImage" Multiplicity="*" />
+    <End Role="Products" Type="Self.Products" Multiplicity="1" />
+    <End Role="HomeImage" Type="Self.HomeImage" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Products">
         <PropertyRef Name="ID" />
@@ -194,4 +147,62 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Product_Images_Products">
+    <End Role="Products" Type="Self.Products" Multiplicity="1" />
+    <End Role="Product_Images" Type="Self.Product_Images" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Products">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Product_Images">
+        <PropertyRef Name="Product_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="AspNetUserRoles">
+    <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="*" />
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="*" />
+  </Association>
+  <EntityContainer Name="canbuydbEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
+    <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" />
+    <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" />
+    <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" />
+    <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" />
+    <EntitySet Name="HomeImage" EntityType="Self.HomeImage" />
+    <EntitySet Name="Product_Images" EntityType="Self.Product_Images" />
+    <EntitySet Name="Products" EntityType="Self.Products" />
+    <EntitySet Name="temp_image" EntityType="Self.temp_image" />
+    <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HomeImage_Products" Association="Self.FK_HomeImage_Products">
+      <End Role="Products" EntitySet="Products" />
+      <End Role="HomeImage" EntitySet="HomeImage" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Product_Images_Products" Association="Self.FK_Product_Images_Products">
+      <End Role="Products" EntitySet="Products" />
+      <End Role="Product_Images" EntitySet="Product_Images" />
+    </AssociationSet>
+    <AssociationSet Name="AspNetUserRoles" Association="Self.AspNetUserRoles">
+      <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+    </AssociationSet>
+    <EntitySet Name="Rotation" EntityType="canbuydbModel.Rotation" />
+  </EntityContainer>
+  <EntityType Name="Rotation">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Created" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="IP" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="ProductId" Type="Int32" />
+    <Property Name="UserId" Type="Int32" />
+  </EntityType>
 </Schema>

@@ -68,6 +68,7 @@ body{
             </div>
         </div>
         <div class="container-fluid">
+          
             <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
                 <!-- Indicators -->
                 <ol class="carousel-indicators">
@@ -149,7 +150,7 @@ body{
                                         <div class="col-md-12 text-left">
                                             @Html.Partial("_RandomModal")
                                             <span class="title">
-                                                <button class="btn btn-lucky" type="button" id="btnRandom" data-toggle="modal" data-target="#randomModal">
+                                                <button class="btn btn-lucky" data-id="@item.ID" type="button" id="btnRandom">
                                                     運
                                                     @*<i class="fa fa-random" aria-hidden="true"></i>*@
                                                 </button>
@@ -214,7 +215,7 @@ body{
         </footer>
     </div>
    
-
+    @Html.Partial("_Alert")
     
 </body>
 

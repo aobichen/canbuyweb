@@ -88,4 +88,10 @@ namespace CanBuyWeb.Models
 
         public List<Product_Images> Images { get; set; }
     }
+
+    public class ProductOrderSession
+    {
+        public int Price { get; set; }
+        public int ProductId { get; set; }
+    }
 }

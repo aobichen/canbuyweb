@@ -1,8 +1,11 @@
 ﻿using CanBuyWeb.Helper;
 using CanBuyWeb.Models;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
 using System.Web;
 using System.Web.Mvc;
 
@@ -44,18 +47,27 @@ namespace CanBuyWeb.Controllers
         }
  
 
-        [Authorize]
+       
         [HttpPost]
-        public object UploadImage()
+        public object UploadImageFiles()
         {
+            //HttpFileCollectionBase files = Request.Files;  
             var files = Request.Files;
             var idList = new List<ImageVM>();
             for (var i = 0; i < files.Count; i++)
             {
                 var name = files[i].FileName;
                 var imghandle = new ImageHandle();
-                if (MatchImageFromImag(System.IO.Path.GetExtension(name)))
+                if (!MatchImageFromImag(System.IO.Path.GetExtension(name)))
                 {
+                    throw new System.Web.Http.HttpResponseException(new HttpResponseMessage(HttpStatusCode.ExpectationFailed)
+                    {
+                        Content = new StringContent(JsonConvert.SerializeObject(new { success = false, message = "圖片格式不符" })),
+                        ReasonPhrase = "Server Error"
+                    });
+                }
+
+                
                     var filename = Guid.NewGuid().ToString();
                     var imagpath = imghandle.path + filename + ".jpeg";
                     var postedFile = files[i].InputStream;
@@ -73,9 +85,10 @@ namespace CanBuyWeb.Controllers
                     image.Save(Server.MapPath(imagpath));
                     db.SaveChanges();
                     idList.Add(new ImageVM { id = tempimg.ID.ToString(), path = tempimg.image_Path, isTemp = true });
-                }
-            }
 
+                }
+             
+            
             return Json(idList);
         }
 
@@ -95,6 +108,9 @@ namespace CanBuyWeb.Controllers
             switch (extents)
             {
                 case ".jpg":
+                    Match = true;
+                    break;
+                case ".jpeg":
                     Match = true;
                     break;
                 case ".png":

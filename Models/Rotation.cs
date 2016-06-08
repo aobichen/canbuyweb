@@ -12,13 +12,12 @@ namespace CanBuyWeb.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class HomeImage
+    public partial class Rotation
     {
         public int ID { get; set; }
-        public string Image_Path { get; set; }
-        public byte[] Image_Bytes { get; set; }
-        public int Product_Id { get; set; }
-    
-        public virtual Products Products { get; set; }
+        public System.DateTime Created { get; set; }
+        public string IP { get; set; }
+        public Nullable<int> ProductId { get; set; }
+        public Nullable<int> UserId { get; set; }
     }
 }
