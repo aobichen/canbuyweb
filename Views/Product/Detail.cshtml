@@ -61,50 +61,24 @@
                 </div>
             </div>
             <div class="col-md-6 detail-info">
-                <dl class="dl-horizontal detail-info-dl">
-                    <dt>
-                        @Html.DisplayNameFor(model => model.Name):
-                    </dt>
-
-                    <dd>
-                        @Html.DisplayFor(model => model.Name)
-                    </dd>
-
-                    <dt>
-                        @Html.DisplayNameFor(model => model.MinPrice):
-                    </dt>
-
-                    <dd>
-                        <input class="min" type="hidden" value="@Model.MinPrice" />
-                        @*@Html.DisplayFor(model => model.MinPrice)*@
-                        @Model.MinPrice
-                    </dd>
-
-                    <dt>
-                        @Html.DisplayNameFor(model => model.MaxPrice):
-
-                    </dt>
-
-                    <dd>
-                        <input class="max" type="hidden" value="@Model.MaxPrice" />
-                        @Model.MaxPrice.ToString("#,##0")
-                    </dd>
-
-                    <dt>
-                        
-                    </dt>
-                  
-
-                    @*<dd>
-                @Html.DisplayFor(model => model.description)
-            </dd>*@
-
-                </dl>
+ 
                 <div class="well">
-                    <button class="btn btn-lucky-lg" data-id="@Model.ID" type="button" id="btnRandom" data-toggle="modal" >
-                        PUSH
-                        @*<i class="fa fa-random" aria-hidden="true"></i>*@
-                    </button>
+                    <input class="min" type="hidden" value="@Model.MinPrice" />
+                    <input class="max" type="hidden" value="@Model.MaxPrice" />
+                    <div style="color:#CE0000">
+                        <p>
+                            
+                            <h3>
+                                價格: @Model.MinPrice.ToString("#,##0") ~ @Model.MaxPrice.ToString("#,##0")
+                            </h3>
+                        </p>
+                    </div>
+                    <div style="padding-top:1%;">
+                        <button class="btn btn-lucky-lg" data-id="@Model.ID" type="button" id="btnRandom" data-toggle="modal">
+                            PUSH
+                            @*<i class="fa fa-random" aria-hidden="true"></i>*@
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>

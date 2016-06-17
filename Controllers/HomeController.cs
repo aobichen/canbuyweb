@@ -46,7 +46,7 @@ namespace IdentitySample.Controllers
             var Next = DateTime.Parse(CurrentDate.AddDays(1).ToShortDateString());
             var Prev = DateTime.Parse(CurrentDate.ToShortDateString());
             var count = db.Rotation.Where(o => o.IP == ip && (o.Created <= Next && o.Created > Prev)).Count();
-            var cannext = count <= limit ? false : true;
+            var cannext = count >= limit ? false : true;
             return Json(new { cannext=cannext });
         }
 

@@ -8,20 +8,25 @@
     @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+    <link href="https://fonts.googleapis.com/css?family=Bangers|Noto+Sans|Ruda|Shrikhand" rel="stylesheet">
     <style type="text/css">
+        body {
+            font-family: 'Noto Sans', sans-serif;
+        }
 
+        .navbar-inverse {
+            background-color: #F8F8F8;
+            border-color: #ffffff;
+        }
 
-.navbar-inverse {
-    background-color: #F8F8F8;
-    border-color: #E7E7E7;
-}
-.navbar-inverse .navbar-nav > li > a {
-    color: #777777;
-}
-.navbar-inverse .navbar-nav > .active > a, .navbar-inverse .navbar-nav > li > a:hover, .navbar-inverse .navbar-nav > .active > a:focus {
-    background-color: #52b6ec;
-    color: #555555;
-}
+            .navbar-inverse .navbar-nav > li > a {
+                color: #ffffff;
+            }
+
+                .navbar-inverse .navbar-nav > .active > a, .navbar-inverse .navbar-nav > li > a:hover, .navbar-inverse .navbar-nav > .active > a:focus {
+                    /*background-color: #52b6ec;*/
+                    color: #ffffff;
+                }
     </style>
 
 </head>
@@ -39,18 +44,19 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     @*<li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>*@
+                        <li>@Html.ActionLink("About", "About", "Home")</li>
+                        <li>@Html.ActionLink("Contact", "Contact", "Home")</li>*@
 
-                    @if (Request.IsAuthenticated && User.IsInRole("Admin")) {
+                    @if (Request.IsAuthenticated && User.IsInRole("Admin"))
+                    {
                         <li>@Html.ActionLink("RolesAdmin", "Index", "RolesAdmin")</li>
                         <li>@Html.ActionLink("UsersAdmin", "Index", "UsersAdmin")</li>
                     }
                     @*@if (Request.IsAuthenticated && User.IsInRole("User"))
-                    {
-                        <li>@Html.ActionLink("賣點東西吧", "Create", "Product")</li>
-                        
-                    }*@
+                        {
+                            <li>@Html.ActionLink("賣點東西吧", "Create", "Product")</li>
+
+                        }*@
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>

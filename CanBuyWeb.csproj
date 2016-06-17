@@ -271,6 +271,7 @@
     <Content Include="sample\background1.jpg" />
     <Content Include="sample\blue.jpg" />
     <Content Include="sample\image07.jpg" />
+    <Content Include="sample\newbg1.png" />
     <Content Include="sample\purple.jpg" />
     <Content Include="sample\slide1.jpg" />
     <Content Include="sample\slide10.jpg" />

@@ -6,7 +6,7 @@
 }
 
 @{
-      string[] images = {"http://images.freeimages.com/images/previews/142/coffee-cup-1239643.jpg", "http://images.freeimages.com/images/previews/6ad/coffee-2-1475383.jpg",
+    string[] images = {"http://images.freeimages.com/images/previews/142/coffee-cup-1239643.jpg", "http://images.freeimages.com/images/previews/6ad/coffee-2-1475383.jpg",
            "http://images.freeimages.com/images/previews/84e/coffee-1-1327664.jpg", "http://images.freeimages.com/images/previews/313/coffee-1559191.jpg",
            "http://images.freeimages.com/images/previews/662/london-style-tip-box-1633051.jpg", "http://images.freeimages.com/images/previews/266/coloured-pencils-over-north-america-1633152.jpg",
            "http://images.freeimages.com/images/previews/f58/old-candle-lamp-1632842.jpg", "http://images.freeimages.com/images/previews/855/tomato-on-a-white-background-1633175.jpg",
@@ -20,27 +20,50 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title</title>
+    <link href="https://fonts.googleapis.com/css?family=Bangers|Noto+Sans|Ruda|Shrikhand" rel="stylesheet">
+
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
 
     <style type="text/css">
+        body {
+            background-color: rgba(209, 209, 209,0.4);
+            /*font-family:'Noto Sans', sans-serif;*/
+            /*font-family:'Shrikhand', cursive;*/
+        }
 
-body{
-    background-color:rgba(209, 209, 209,0.4);                   
-}
-.navbar-inverse{
-    background-color:transparent;
-   
-}
+        .navbar-inverse {
+            background-color: #000000;
+        }
 
+            .navbar-inverse .navbar-brand {
+                /*color: #52b6ec;*/
+                color: #ff7575;
+                font-family: 'Noto Sans', sans-serif;
+            }
+
+                .navbar-inverse .navbar-brand:hover {
+                    /*color: #52b6ec;*/
+                    color: #ff7575;
+                    font-family: 'Noto Sans', sans-serif;
+                }
+
+            .navbar-inverse .navbar-nav > li > a {
+                color: #ff7575;
+            }
+
+                .navbar-inverse .navbar-nav > .active > a, .navbar-inverse .navbar-nav > li > a:hover, .navbar-inverse .navbar-nav > .active > a:focus {
+                    /*background-color: #52b6ec;*/
+                    color: #ff7575;
+                }
     </style>
 
 </head>
 <body>
 
-    <script src="~/Content/javascripts/Index.js"></script>
+
     <div class="navbar navbar-inverse navbar-fixed-top" id="navbar">
         <div class="container nav-contaniner" style="z-index:100;position:absolute;width:60%;">
             <div class="navbar-header">
@@ -54,80 +77,86 @@ body{
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     @*<li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>*@
+                        <li>@Html.ActionLink("About", "About", "Home")</li>
+                        <li>@Html.ActionLink("Contact", "Contact", "Home")</li>*@
 
                     @if (Request.IsAuthenticated && User.IsInRole("Admin"))
                     {
                         <li>@Html.ActionLink("RolesAdmin", "Index", "RolesAdmin")</li>
                         <li>@Html.ActionLink("UsersAdmin", "Index", "UsersAdmin")</li>
                     }
-                   
+
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
         </div>
         <div class="container-fluid">
-          
+
             <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
                 <!-- Indicators -->
-                <ol class="carousel-indicators">
-                    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-                    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-                    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
-                </ol>
+                @*<ol class="carousel-indicators">
+                        <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                        <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                        <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                    </ol>*@
 
                 <!-- Wrapper for slides -->
                 <div class="carousel-inner" role="listbox">
-                    <div class="item active">
-                        <img src="~/Content/images/slide1.jpg" alt="..." style="max-height:400px;width:100%;">
-                        <div class="carousel-caption">
-                            ...
+                    <div class="item active" style="background-image:url('../../sample/newbg1.png'); min-height:400px;">
+                        <div class="col-md-6 text-right">
+                            <h3 style="margin-top:10%;color:#ffffff;">
+                                現在就可以透過 Adobe 的 Typekit 字體同步功能，下載到你的電腦中，並且在 Adobe 的設計軟體，或是所有其他文書編輯軟體，例如微軟的 Word 當中使用，而這篇文章就來分享如何下載安裝字體的方法。
+                            </h3>
+                        </div>
+                        <div class="col-md-6 text-left">
+                            黑體字的基礎上，設計出更具有現代感、更易於閱讀，溫和滑順的中文、日文、韓文字型，讓所有設計者現在就能開始使用在你的作品上。
+
                         </div>
                     </div>
-                    <div class="item">
-                        <img src="~/Content/images/slide2.gif" alt="..." style="max-height:400px;width:100%;">
-                        <div class="carousel-caption">
-                            ...
-                        </div>
-                    </div>
-                    <div class="item">
-                        <img src="~/Content/images/slide3.jpg" alt="..." style="max-height:400px;width:100%;">
-                        <div class="carousel-caption">
-                            ...
-                        </div>
-                    </div>
+                    @*<div class="item">
+                            <img src="~/Content/images/slide2.gif" alt="..." style="max-height:400px;width:100%;">
+                            <div class="carousel-caption">
+                                ...
+                            </div>
+                        </div>*@
+                    @*<div class="item">
+                            <img src="~/Content/images/slide3.jpg" alt="..." style="max-height:400px;width:100%;">
+                            <div class="carousel-caption">
+                                ...
+                            </div>
+                        </div>*@
                 </div>
 
                 <!-- Controls -->
-                <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
-                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-                    <span class="sr-only">Previous</span>
-                </a>
-                <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
-                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                    <span class="sr-only">Next</span>
-                </a>
+                @*<a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+                        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+                        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>*@
             </div>
         </div>
-        
+
     </div>
     <div class="container body-content" style="margin-top:101px;">
-        
+
 
         <div class="row main-content">
-           
-            @if (Model != null && Model.Count()>0) { 
 
-            foreach (var item in Model)
+            @if (Model != null && Model.Count() > 0)
             {
-                <div class="col-md-4 col-xs-4 p-item">
-                    <div class="col-md-12">
-                        
+
+                foreach (var item in Model)
+                {
+                    <div class="col-md-4 col-xs-4 p-item">
+                        <div class="col-md-12">
+
                             <div class="col-md-12">
                                 @*<div class="col-md-6">
-                        <a href="@Url.Action("Detail", "Home", new {id = item.ID })"><i class="fa fa-search" aria-hidden="true"></i></a>
-                    </div>*@
+                                        <a href="@Url.Action("Detail", "Home", new {id = item.ID })"><i class="fa fa-search" aria-hidden="true"></i></a>
+                                    </div>*@
                                 <div class="thumbnail" style="padding-top:15px;">
                                     <a href="@Url.Action("Detail", "Product", new {Id = item.ID })">
                                         <img class="img-responsive col-md-12" style="height:auto" src="@item.ImagePath" />
@@ -140,18 +169,20 @@ body{
                                             </a>
                                         </div>
                                         <div class="col-md-12" style="font-weight:bold;color:#ed3729;font-size:121%;">
-                                            
-                                           
-                                            @*<i class="fa fa-usd" aria-hidden="true"></i>*@
-                                           $ <i class="min">@item.MinPrice</i>  @*<i class="fa fa-random" aria-hidden="true"></i>*@ ~ <i class="max">@item.MaxPrice.ToString("#,##0")</i>
 
-                                           
+
+                                            @*<i class="fa fa-usd" aria-hidden="true"></i>*@
+                                            $ <i class="min">@item.MinPrice</i>  @*<i class="fa fa-random" aria-hidden="true"></i>*@ ~ <i class="max">@item.MaxPrice.ToString("#,##0")</i>
+
+
                                         </div>
                                         <div class="col-md-12 text-left">
-                                            @Html.Partial("_RandomModal")
+
                                             <span class="title">
                                                 <button class="btn btn-lucky" data-id="@item.ID" type="button" id="btnRandom">
-                                                    運
+                                                    <span>
+                                                        轉
+                                                    </span>
                                                     @*<i class="fa fa-random" aria-hidden="true"></i>*@
                                                 </button>
                                             </span>
@@ -159,66 +190,65 @@ body{
                                     </div>
                                 </div>
                             </div>
-                        
+
+                        </div>
                     </div>
-                </div>
+                }
             }
-            }
-         
+
         </div>
         <hr />
         <footer class="row">
             <div class="row contact-us">
                 <div class="col-md-6 row">
-                    
-                        <div class="col-md-4">
-                            <fieldset class="form-group">
-                                <label>NAME:</label>
-                                <input class="form-control" type="text" />
-                                </fieldset>
-                        </div>
-                        <div class="col-md-8">
-                            <fieldset class="form-group">
-                                <label>Email Address:</label>
-                                <input class="form-control" type="text" />
-                                </fieldset>
-                        </div>
-                        <div class="col-md-12">
-                          
-                            <fieldset class="form-group">
-                                <textarea class="form-control" rows="5" style="max-width:90%"></textarea>
-                                </fieldset>
-                        </div>
+
+                    <div class="col-md-4">
+                        <fieldset class="form-group">
+                            <label>NAME:</label>
+                            <input class="form-control" type="text" />
+                        </fieldset>
+                    </div>
+                    <div class="col-md-8">
+                        <fieldset class="form-group">
+                            <label>Email Address:</label>
+                            <input class="form-control" type="text" />
+                        </fieldset>
+                    </div>
+                    <div class="col-md-12">
+
+                        <fieldset class="form-group">
+                            <textarea class="form-control" rows="5" style="max-width:90%"></textarea>
+                        </fieldset>
+                    </div>
                     <div class="col-md-12">
                         <button type="button" class="btn btn-warning">submit</button>
-                        </div>
-
-
                     </div>
-                <div class="col-md-6 social" >
+
+
+                </div>
+                <div class="col-md-6 social">
                     <div class="col-md-12">
-                        <i class="fa fa-facebook fa-3x icon-fb" aria-hidden="true" ></i>
+                        <i class="fa fa-facebook fa-3x icon-fb" aria-hidden="true"></i>
                         <i class="text-social">Facebook</i>
                     </div>
                     <div class="col-md-12 col-social">
                         <i class="fa fa-google fa-3x icon-google" aria-hidden="true"></i>
                         <i class="text-social">Google Plus</i>
                     </div>
-                    <div class="col-md-12 col-social" >
+                    <div class="col-md-12 col-social">
                         <i class="fa fa-twitter fa-3x icon-twitter" aria-hidden="true"></i>
                         <i class="text-social">Twitter</i>
                     </div>
-                    </div>
+                </div>
 
             </div>
             <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
         </footer>
     </div>
-   
+    @Html.Partial("_RandomModal")
     @Html.Partial("_Alert")
-    
+    <script src="~/Content/javascripts/Index.js"></script>
 </body>
 
 
 </html>
-

@@ -1,6 +1,7 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
+    font-family:'Noto Sans', sans-serif; 
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -54,11 +55,13 @@ input[type="checkbox"].input-validation-error {
                     background-image: -moz-linear-gradient(bottom, #15C79F 10%, #31EFBF 90%);
                     background-image: -webkit-linear-gradient(bottom, #15C79F 10%, #31EFBF 90%);
                     background-image: -ms-linear-gradient(bottom, #15C79F 10%, #31EFBF 90%);*/
-    background-image: linear-gradient(to right bottom, rgba(194, 223, 255,1) 20%,rgba(235, 244, 255,1) 80%);
+    /*background-image: linear-gradient(to right bottom, rgba(194, 223, 255,1) 20%,rgba(235, 244, 255,1) 80%);*/
+    background-image:linear-gradient(#FF0000,#CE0000);
 }
 
     .navbar-inverse > .nav-contaniner {
         background-color: #ffffff;
+        /*background-image:linear-gradient(#FF0000,#CE0000);*/
         border-radius: 5px;
         padding-bottom: 5px;
     }
@@ -77,12 +80,14 @@ a:hover {
 
 
 .navbar-inverse .navbar-brand {
-    color: #52b6ec;
-    font-family: "思源黑體";
+    /*color: #52b6ec;*/
+    color:#ffffff;
+    font-family:'Noto Sans', sans-serif;
 }
 
 .navbar-inverse .navbar-brand:hover {
     color: #52b6ec;
+     color:#ffffff;
 }
 
 .navbar-inverse .navbar-toggle {
@@ -167,8 +172,7 @@ a:hover {
 
 .Price {
     color:	#ACD6FF;
-     text-decoration:none;
-
+    text-decoration:none;
 }
 
 .Price:hover {
@@ -178,16 +182,18 @@ a:hover {
 .Price .name {
     color:#0072E3;
     color:#000000;
-   font-size:13pt;
+    font-size:13pt;
     text-decoration:none;
+    font-family:'Bangers', cursive;
 }
 
 .Price .name:hover{
-        color:#0072E3;
+       
          color:#000000;
    font-size:13pt;
     text-decoration:none;
     text-shadow:2px 2px 2px #d0d0d0;
+   
 }
 
 .Price .title {
@@ -195,7 +201,7 @@ a:hover {
     /*color:#000000;*/
     color:#007500;
    font-size:11pt;
-   font-family: "Microsoft YaHei";
+  
 }
 
 /*.Price .min{
@@ -237,8 +243,8 @@ a:hover {
 
 
 .btn-lucky{
-    font-family:DFKai-sb;
-    border-radius:50%;
+    font-family:'Bangers', cursive;
+    border-radius:3%;
     box-shadow:0px 1px 5px #888888;
     padding:6px 10px 6px 10px;
     background-color:#ed3729;
@@ -247,7 +253,10 @@ a:hover {
     text-shadow:0px 1px 1px #4F4F4F;
     color:#ffffff;
     background: linear-gradient(#FF0000,#CE0000);
+    width:100%;
 }
+
+
 
 
 .btn-lucky:hover{

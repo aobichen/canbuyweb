@@ -78,6 +78,6 @@ D:\CanBuyWeb\CanBuyWeb\bin\zh-Hant\Microsoft.Owin.Security.Facebook.resources.dl
 D:\CanBuyWeb\CanBuyWeb\bin\zh-Hant\Microsoft.Owin.Security.Google.resources.dll
 D:\CanBuyWeb\CanBuyWeb\bin\zh-Hant\Microsoft.Owin.Security.Twitter.resources.dll
 D:\CanBuyWeb\CanBuyWeb\bin\zh-Hant\Microsoft.Owin.Security.MicrosoftAccount.resources.dll
+D:\CanBuyWeb\CanBuyWeb\obj\Debug\CanBuyWeb.csprojResolveAssemblyReference.cache
 D:\CanBuyWeb\CanBuyWeb\obj\Debug\CanBuyWeb.dll
 D:\CanBuyWeb\CanBuyWeb\obj\Debug\CanBuyWeb.pdb
-D:\CanBuyWeb\CanBuyWeb\obj\Debug\CanBuyWeb.csprojResolveAssemblyReference.cache
